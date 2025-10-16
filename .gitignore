@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+artifacts/
+*.faiss
+*.npy
+*.npz
+*.pkl
+*.parquet
+.streamlit/
+.idea/
+.vscode/
+**/.DS_Store
