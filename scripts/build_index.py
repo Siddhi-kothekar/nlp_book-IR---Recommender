@@ -1,10 +1,20 @@
-import argparse
 import os
+# Disable TensorFlow BEFORE any imports
+os.environ.setdefault("TRANSFORMERS_NO_TF", "1")
+os.environ.setdefault("USE_TF", "0")
+os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
+import argparse
+import sys
 import json
 import numpy as np
 import pandas as pd
 import yaml
 from tqdm import tqdm
+
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 from src.data import load_reviews_csv, clean_reviews, remap_columns
 from src.sentiment import VaderSentiment

@@ -1,0 +1,24 @@
+# Configuration for Book Recommendation System
+# Content-Based Filtering using BERT Embeddings and TF-IDF
+
+# Model Configuration
+keybert_model: all-MiniLM-L6-v2  # KeyBERT model name
+sentence_transformer: sentence-transformers/all-MiniLM-L6-v2
+
+# Data Processing
+min_description_word_count: 3  # Minimum words in description
+keywords_top_n: 10  # Number of keywords to extract per book
+
+# TF-IDF Vectorization
+min_df: 3  # Minimum document frequency
+max_df: 0.6  # Maximum document frequency (ratio)
+
+# Recommendation Settings
+n_recommendations: 5  # Default number of recommendations
+ir_top_k: 10  # Default number of IR search results
+
+# File Paths
+books_data_path: data/keywords.csv  # Processed keywords CSV
+preprocessed_data_path: data/preprocessed.csv  # Cleaned data
+artifacts_dir: artifacts  # Directory for saved models and vectors
+
