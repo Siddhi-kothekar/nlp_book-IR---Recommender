@@ -183,7 +183,7 @@ B002,Okay Product,3,"It's okay, nothing special.",jane_smith
 - Medium: 10,000-100,000 reviews
 - Large: 100,000+ reviews (with batch processing)
 
-**Note**: Datasets are not included in this repository due to size constraints. Users need to provide their own datasets.
+**Note**: Large dataset files (>100MB) are excluded from this repository due to GitHub's file size limits. Users need to provide their own datasets. Place your CSV files in the `data/` directory. The `.gitignore` file is configured to exclude large data files automatically.
 
 ---
 
@@ -218,9 +218,9 @@ nlp_book-IR---Recommender/
 │   └── book_recommendation_example.py
 │
 ├── data/                         # Data directory (user-provided)
-│   ├── book2000k-3000k.csv      # Book dataset (example)
-│   ├── keywords.csv             # Processed keywords (generated)
-│   └── Processed_Books.csv      # Preprocessed books (generated)
+│   └── keywords.csv             # Processed keywords (generated)
+│   # Note: Large CSV files are excluded from git (see .gitignore)
+│   # Users should add their own book/Amazon review datasets here
 │
 ├── artifacts/                    # Saved models and indices
 │   ├── book_vectors.joblib      # Saved TF-IDF vectors for books
@@ -514,16 +514,23 @@ Web UI Display
 
 ## 🤝 Collaborators
 
-To add collaborators to this repository:
+**Current Collaborators:**
+- Siddhi-kothekar (Repository Owner)
+
+**To Add Collaborators:**
+
+The repository owner needs to add collaborators through GitHub's web interface:
 
 1. Go to the repository on GitHub: https://github.com/Siddhi-kothekar/nlp_book-IR---Recommender
-2. Click on **Settings** → **Collaborators**
-3. Click **Add people**
-4. Search for and add:
+2. Click on **Settings** (in the repository navigation bar)
+3. Click on **Collaborators** in the left sidebar
+4. Click **Add people** button
+5. Search for and add:
    - `surajamit` or `Amit Purushottam Pimpalkar`
-   - Other collaborators as needed
+   - Any other collaborators as needed
+6. Collaborators will receive an email invitation to accept
 
-**Note**: Repository owner (Siddhi-kothekar) needs to add collaborators through GitHub's web interface.
+**Note**: Only the repository owner can add collaborators. Please add `surajamit` or `Amit Purushottam Pimpalkar` as requested.
 
 ---
 
