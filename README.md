@@ -8,7 +8,6 @@ This project implements two distinct recommendation systems:
 
 1. **Book Recommendation System**: Content-based filtering using KeyBERT for keyword extraction, TF-IDF vectorization, and cosine similarity to recommend books based on their descriptions, authors, and themes.
 
-2. **Amazon Product Recommendation System**: Information retrieval and recommendation system using Sentence Transformers, FAISS indexing, and sentiment analysis to recommend products based on user reviews.
 
 ### Key Features
 
