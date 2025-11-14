@@ -12,3 +12,8 @@ artifacts/
 .idea/
 .vscode/
 **/.DS_Store
+
+# Large data files (exceed GitHub's 100MB limit)
+data/*.csv
+!data/keywords.csv
+data/Processed_Books.csv
