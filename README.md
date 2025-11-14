@@ -98,11 +98,7 @@ python scripts/process_books.py --input data/goodreads_book.csv --build-vectors
 streamlit run app/book_app.py
 ```
 
-#### Amazon Product Recommendation System:
-```bash
-# The app will automatically build the index on first run
-streamlit run app/streamlit_app.py
-```
+
 
 Or use the quick start scripts:
 - **Windows**: Double-click `run_book_recommender.bat` or `run_amazon_reviews.bat`
@@ -149,38 +145,8 @@ Id,Name,Authors,Description
 - Medium: 1,000-10,000 books (~5-30 minutes)
 - Large: 10,000+ books (may require batch processing)
 
-### Amazon Reviews Dataset
 
-**Source**: Amazon Product Reviews Dataset (or similar review data)
 
-**Format**: CSV file with the following structure:
-
-| Column | Required | Description |
-|--------|----------|-------------|
-| `asin` | ✅ Yes | Product ID (Amazon Standard Identification Number) |
-| `reviewText` | ✅ Yes | Review text content |
-| `rating` or `overall` | ⚪ Optional | Numeric rating (1-5) |
-| `title` or `itemName` | ⚪ Optional | Product name |
-| `userName` | ⚪ Optional | Reviewer name |
-
-**Example**:
-```csv
-asin,itemName,rating,reviewText,userName
-B001,Great Product,5,"This product is amazing! Highly recommend.",john_doe
-B002,Okay Product,3,"It's okay, nothing special.",jane_smith
-```
-
-**Preprocessing Steps**:
-1. Text cleaning (removes URLs, HTML tags, punctuation)
-2. Review length filtering (max 512 tokens)
-3. Sentiment analysis using VADER
-4. Embedding generation using Sentence Transformers
-5. FAISS index construction for fast retrieval
-
-**Size**: The system supports:
-- Small: 1,000-10,000 reviews
-- Medium: 10,000-100,000 reviews
-- Large: 100,000+ reviews (with batch processing)
 
 **Note**: Large dataset files (>100MB) are excluded from this repository due to GitHub's file size limits. Users need to provide their own datasets. Place your CSV files in the `data/` directory. The `.gitignore` file is configured to exclude large data files automatically.
 
@@ -281,44 +247,7 @@ Search Results:
    Keywords: python, programming, learning, tutorial
 ```
 
-### Amazon Product Recommendation System
 
-#### Input Example:
-```python
-# User query: "durable wireless headphones with good battery life"
-```
-
-#### Expected Output:
-```
-Top Recommended Products:
-
-1. Sony WH-1000XM4 Wireless Headphones
-   Relevance Score: 0.89
-   Average Rating: 4.6/5.0
-   Sentiment: 0.75 (Positive)
-   Matching Reviews: 45 reviews found
-   
-2. Bose QuietComfort 35 II
-   Relevance Score: 0.85
-   Average Rating: 4.5/5.0
-   Sentiment: 0.72 (Positive)
-   Matching Reviews: 38 reviews found
-```
-
-#### Review Retrieval Example:
-**Input Query**: `"battery life excellent sound quality"`
-
-**Output**:
-```
-Retrieved Reviews (Top 5):
-
-1. "Excellent battery life! Lasts 30+ hours on a single charge. Sound quality is amazing..."
-   Product: Sony WH-1000XM4
-   Rating: 5/5 | Sentiment: 0.85
-
-2. "Great headphones, battery lasts all day. Sound is crisp and clear..."
-   Product: Bose QuietComfort 35 II
-   Rating: 5/5 | Sentiment: 0.78
 ```
 
 ---
@@ -368,11 +297,6 @@ Retrieved Reviews (Top 5):
 - **TF-IDF**: Term Frequency-Inverse Document Frequency vectorization
 - **Cosine Similarity**: Content-based similarity computation
 
-#### Amazon Recommendation System:
-- **Sentence Transformers**: Semantic embeddings for reviews
-- **FAISS**: Fast approximate nearest neighbor search
-- **VADER**: Sentiment analysis
-- **Cross-Encoder Reranking** (optional): Advanced reranking using cross-encoders
 
 ---
 
@@ -398,21 +322,7 @@ n_recommendations: 5
 ir_top_k: 10
 ```
 
-### Amazon System Configuration (`config.yaml`)
 
-```yaml
-model_name: sentence-transformers/all-mpnet-base-v2
-reranker_model: cross-encoder/ms-marco-MiniLM-L-6-v2
-artifacts_dir: artifacts
-data_path: data/amazon_reviews.csv
-
-top_k: 50
-recommendations: 10
-batch_size: 256
-max_review_length: 512
-sentiment_threshold: 0.1
-min_rating: 4
-```
 
 ---
 
@@ -424,11 +334,6 @@ min_rating: 4
 - First run (with model download): ~10-20 seconds per 100 books
 - Subsequent runs: ~1-2 seconds per 100 books
 - Keyword extraction: ~1-2 seconds per book
-
-**Amazon System**:
-- Index building: ~1-2 minutes per 10,000 reviews
-- Query retrieval: <100ms per query
-- Embedding generation: ~0.5 seconds per review (batch processing)
 
 ### Memory Requirements
 
@@ -455,13 +360,6 @@ min_rating: 4
 4. **Keyword-Based Search**: Information retrieval using extracted keywords
 5. **Similarity Scoring**: Cosine similarity-based ranking
 
-### Amazon Recommendation Features
-
-1. **Semantic Search**: Finds relevant reviews using semantic understanding
-2. **Sentiment-Aware Recommendations**: Weights recommendations by sentiment scores
-3. **Rating Integration**: Combines similarity, sentiment, and ratings
-4. **Product Aggregation**: Groups reviews by product and ranks products
-5. **Fast Retrieval**: FAISS-based efficient similarity search
 
 ---
 
@@ -480,15 +378,7 @@ min_rating: 4
 │                                                               │
 └─────────────────────────────────────────────────────────────┘
 
-┌─────────────────────────────────────────────────────────────┐
-│              Amazon Product Recommendation System             │
-├─────────────────────────────────────────────────────────────┤
-│                                                               │
-│  Reviews → Text Cleaning → Embeddings (Sentence Transformers)│
-│       → FAISS Index → Sentiment Analysis (VADER)            │
-│       → Product Aggregation → Recommendations                │
-│                                                               │
-└─────────────────────────────────────────────────────────────┘
+
 ```
 
 ### Data Flow
@@ -510,26 +400,6 @@ Web UI Display
 ```
 
 ---
-
-## 🤝 Collaborators
-
-**Current Collaborators:**
-- Siddhi-kothekar (Repository Owner)
-
-**To Add Collaborators:**
-
-The repository owner needs to add collaborators through GitHub's web interface:
-
-1. Go to the repository on GitHub: https://github.com/Siddhi-kothekar/nlp_book-IR---Recommender
-2. Click on **Settings** (in the repository navigation bar)
-3. Click on **Collaborators** in the left sidebar
-4. Click **Add people** button
-5. Search for and add:
-   - `surajamit` or `Amit Purushottam Pimpalkar`
-   - Any other collaborators as needed
-6. Collaborators will receive an email invitation to accept
-
-**Note**: Only the repository owner can add collaborators. Please add `surajamit` or `Amit Purushottam Pimpalkar` as requested.
 
 ---
 
